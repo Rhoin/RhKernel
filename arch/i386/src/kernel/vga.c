@@ -80,12 +80,12 @@ void vga_getCursorPosition(int32_t *x, int32_t *y)
 	*y = csr_y;
 }
 
-void vga_getX()
+int32_t vga_getX()
 {
 	return csr_x;
 }
 
-void vga_getY()
+int32_t vga_getY()
 {
 	return csr_y;
 }
@@ -127,15 +127,5 @@ void vga_putch(char ch)
 	
 	vga_scroll();
 	vga_updateCursor();
-}
-
-int32_t vga_getX()
-{
-	return csr_x;
-}
-
-int32_t vga_getY()
-{
-	return csr_y;
 }
 
