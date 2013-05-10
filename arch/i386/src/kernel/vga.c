@@ -5,7 +5,7 @@
 #define VGA_ROW_MAX			25
 uint16_t *g_VgaVideoMemAddr;
 int32_t csr_x, csr_y;
-uint8_t attrib = 0x0F;
+uint8_t g_VgaAttrib = 0x0F;
 
 void vga_init()
 {
@@ -18,13 +18,10 @@ void vga_scroll()
 {
 	if(csr_y >= 25)
 	{
-		int32_t i;
-		for(i = 0; i < 25*80; i++)
-		{
-			g_VgaVideoMemAddr[i] = g_VgaVideoMemAddr[i + 80];
-		}
+		int32_t tmp = csr_y - 25 + 1;
+		memcpy(g_VgaVideoMemAddr, g_VgaVideoMemAddr + (tmp * 80), (25 - tmp) * 80 *2);
 		
-		uint16_t blank = ' ' | (attrib << 8);
+		uint16_t blank = ' ' | (g_VgaAttrib << 8);
 		memsetw(g_VgaVideoMemAddr + (25 - ( csr_y - 26)), blank, 80);
 		csr_y = 24;
 		
@@ -115,7 +112,7 @@ void vga_putch(char ch)
 	else if(ch >= ' ')
 	{
 		uint16_t *ptr = g_VgaVideoMemAddr + ( csr_y * 80 + csr_x);
-		*ptr = ch | attrib;
+		*ptr = ch | g_VgaAttrib;
 		csr_x++
 	}
 	
