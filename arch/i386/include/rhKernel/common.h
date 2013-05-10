@@ -23,38 +23,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RHAPI extern
 
 //Common functions for kernel
-static uint8_t inputb(uint8_t _port)
+static uint8_t inportb(uint8_t _port)
 {
 	uint8_t ret;
 	__asm__ __volatile__ ("inb %1, %0" : "=a"(ret) : "dN"(_port));
 	return ret; 
 }
 
-static uint16_t inputw(uint16_t _port)
+static uint16_t inportw(uint16_t _port)
 {
 	uint16_t ret;
 	__asm__ __volatile__ ("inw %1, %0" : "=a"(ret) : "dN"(_port));
 	return ret; 
 }
 
-static uint32_t inputd(uint32_t _port)
+static uint32_t inportd(uint32_t _port)
 {
 	uint32_t ret;
 	__asm__ __volatile__ ("ind %1, %0" : "=a"(ret) : "dN"(_port));
 	return ret; 
 }
 
-static void outputb(uint8_t _port, uint8_t data)
+static void outportb(uint8_t _port, uint8_t data)
 {
 	__asm__ __volatile__ ("outb %1, %0" : : "dN"(_port) : "a"(_data));
 }
 
-static void outputw(uint16_t _port, uint16_t _data)
+static void outportw(uint16_t _port, uint16_t _data)
 {
 	__asm__ __volatile__ ("outw %1, %0" : : "dN"(_port) : "a"(_data));
 }
 
-static void outputd(uint32_t _port, uint32_t _data)
+static void outportd(uint32_t _port, uint32_t _data)
 {
 	__asm__ __volatile__ ("outd %1, %0" : : "dN"(_port) : "a"(_data));
 }

@@ -33,7 +33,7 @@ RHAPI void 		vga_init();
  * @__ch : the char will be printed.
  * 
  */
-RHAPI void 		vga_putch(char ch);
+RHAPI void 		vga_putch(char __ch);
 
 /*
  * 
@@ -56,7 +56,7 @@ RHAPI void 		vga_updateCursor();
  * @__y : y input which will be setted to vga console cursors y.
  * 
  */
-RHAPI void 		vga_getCursorPosition(int32_t *x, int32_t *y);
+RHAPI void 		vga_getCursorPosition(int32_t *__x, int32_t *__y);
 
 /*
  * 
@@ -81,5 +81,5 @@ RHAPI int32_t 	vga_getY();
  * @__y : y input which will set to vga console cursors y.
  * 
  */
-RHAPI void 		vga_setCursorPos(int32_t x, int32_t y);
+RHAPI void 		vga_setCursorPos(int32_t __x, int32_t __y);
 #endif /*_VGA_H_*/
